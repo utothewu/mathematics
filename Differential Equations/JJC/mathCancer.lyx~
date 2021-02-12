@@ -1,0 +1,627 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Scientific Report on Modeling Tumor Growth in the Patient
+\end_layout
+
+\begin_layout Author
+Cedric Gerdes, John Kunkee, John Williams
+\end_layout
+
+\begin_layout Date
+February 12th, 2021
+\end_layout
+
+\begin_layout Section*
+Problem and Data
+\end_layout
+
+\begin_layout Standard
+On February 1st, the patient was found by MRI to have a malignant tumor
+ of volume 650 cubic millimeters in the suprasellar cavity of the brain.
+ Another MRI was performed a week later on February 8th which measured the
+ tumor's volume to have grown to 810 cubic millimeters.
+ The goal of this report is to give and explain a mathematical model for
+ the tumor's growth which is both simple and accurate enough to advise the
+ specialists at AOS, Inc.
+ on the treatment of the patient.
+ We are asked to 
+\end_layout
+
+\begin_layout Itemize
+find a mathematical model for the growth of the tumor,
+\end_layout
+
+\begin_layout Itemize
+find a closed form solution to this model and graph it,
+\end_layout
+
+\begin_layout Itemize
+extrapolate when the tumor will reach 90% the volume of the suprasellar
+ cavity,
+\end_layout
+
+\begin_layout Itemize
+find the growth rate of the tumor on February 1st,
+\end_layout
+
+\begin_layout Itemize
+identify when the tumor is growing at its fastest rate and the size of the
+ tumor at that time.
+\end_layout
+
+\begin_layout Section*
+Model
+\end_layout
+
+\begin_layout Standard
+A Gompertz curve is the generally excepted mathematical model for the growth
+ of tumors large enough to detect and typically subject to some constraint.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+literal "false"
+
+\end_inset
+
+ The constraint in this scenario is the volume of the suprasellar cavity,
+ which is 3,200 cubic millimeters.
+ We therefore apply it here as 
+\begin_inset Formula 
+\begin{equation}
+\frac{dV(t)}{dt}=rV(t)\ln(\frac{k}{V(t)})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $V(t)$
+\end_inset
+
+ is the volume of the tumor in cubic millimeters as a function of time,
+ 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $k$
+\end_inset
+
+ are constants, and 
+\begin_inset Formula $t$
+\end_inset
+
+ is time, which is measured in days with 
+\begin_inset Formula $t=0$
+\end_inset
+
+ referring to February 1st.
+ By analysis shown later, we find 
+\begin_inset Formula 
+\begin{equation}
+V(t)=e^{-\frac{A}{e^{rt}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $A$
+\end_inset
+
+ is some constant.
+ Then, from the measurements on February 1st and 8th respectively, 
+\begin_inset Formula 
+\begin{equation}
+V(0)=650\text{mm\ensuremath{^{3}}}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+V(7)=810\text{mm\ensuremath{^{3}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Analyses
+\end_layout
+
+\begin_layout Standard
+Returning to equation (1), seperating variables, and using properties of
+ logs, we have
+\begin_inset Formula 
+\[
+\frac{dV(t)}{dt}=rV(t)\ln(\frac{k}{V(t)})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{dV(t)}{V(t)(\ln(k)-\ln(V(t))}=r\thinspace dt
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We integrate both sides, using a u-substitution on the left with 
+\begin_inset Formula $u=\ln(V(t))$
+\end_inset
+
+, 
+\begin_inset Formula $du=\frac{dV(t)}{V(t)}$
+\end_inset
+
+, to find
+\begin_inset Formula 
+\begin{equation}
+-\ln(\ln(\frac{k}{V(t)}))=rt+C
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Simplifying this we find equation (2)
+\begin_inset Formula 
+\[
+V(t)=\frac{k}{e^{\frac{A}{e^{rt}}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $A=e^{C}$
+\end_inset
+
+ which is some constant.
+ Now to find the constant k we return to the original equation and observe
+ that since the volume of the tumor is constrained to 3200 cubic millimeters,
+ then the change in volume when 
+\begin_inset Formula $V(t)=3200$
+\end_inset
+
+ is 0.
+ We also know that 
+\begin_inset Formula $r$
+\end_inset
+
+ must be nonzero, otherwise the tumor wouldn't have grown by this model,
+ so 
+\begin_inset Formula $k$
+\end_inset
+
+ must equal 3200 so that 
+\begin_inset Formula $\ln(\frac{k}{V(t)})=0$
+\end_inset
+
+ when 
+\begin_inset Formula $V(t)=3200$
+\end_inset
+
+.
+ Then, to find A, notice that 
+\begin_inset Formula $V(0)=650$
+\end_inset
+
+ so
+\begin_inset Formula 
+\[
+V(0)=650=\frac{3200}{e^{\frac{A}{e^{0}}}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+A=\ln(\frac{3200}{650})\approx1.5939
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then, to find 
+\begin_inset Formula $r$
+\end_inset
+
+, notice that 
+\begin_inset Formula $V(7)=810$
+\end_inset
+
+ so
+\begin_inset Formula 
+\[
+V(7)=810=\frac{3200}{e^{\frac{1.5939}{e^{7r}}}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{1.5939}{e^{7r}}=\ln(\frac{3200}{810})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+r=\frac{\ln(\frac{1.5939}{\ln(\frac{3200}{810})})}{7}\approx0.021222
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Therefore,
+\begin_inset Formula 
+\begin{equation}
+V(t)=\frac{3200}{e^{\frac{1.5939}{e^{0.021222t}}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and
+\begin_inset Formula 
+\begin{equation}
+\frac{dV(t)}{dt}=0.021222V(t)\ln(\frac{3200}{V(t)})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now with the complete equation (graphed in fig.
+ 0.1) we can find when the tumor will reach 90% of the total volume of the
+ suprasellar cavity as
+\begin_inset Formula 
+\[
+\frac{90}{100}3200=\frac{3200}{e^{\frac{1.5939}{e^{0.021222t}}}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\ln\frac{1.5939}{\ln(\frac{10}{9})}}{0.021222}=t\approx128\text{days}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To find the growth rate of the tumor on Febraury 1st, we can use equations
+ (8) and (3) for
+\begin_inset Formula 
+\[
+\frac{dV(0)}{dt}=0.021222(650)\ln(\frac{3200}{650})\approx29.985
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substituting our solved values for the constants and functions in (1) and
+ simplifying, we find
+\begin_inset Formula 
+\begin{equation}
+\frac{dV(t)}{dt}=108.242e^{-1.5939e^{-0.021222t}-0.021222t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which is graphed in fig.
+ 0.2.
+ To find when the tumor is growing at its fastest rate, we find the zeros
+ of the derivative of (9)
+\end_layout
+
+\begin_layout Standard
+which is
+\begin_inset Formula 
+\begin{equation}
+\frac{d^{2}V(t)}{dt^{2}}=(3.66137-2.29711e^{0.021222t})e^{-0.042444t-1.5939e^{-0.021222t}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Setting this equal to zero we find the value of 
+\begin_inset Formula $t$
+\end_inset
+
+ for which 
+\begin_inset Formula $\frac{dV(t)}{dt}$
+\end_inset
+
+ is maximized, because we know 
+\begin_inset Formula $\frac{dV(t)}{dt}$
+\end_inset
+
+is always positive
+\begin_inset Formula 
+\[
+\frac{\ln(\frac{3.66137}{2.29711})}{0.021222}=t\approx21.967\text{days}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entering this value of 
+\begin_inset Formula $t$
+\end_inset
+
+ into (9) we find that the maximum rate of change is 
+\begin_inset Formula 
+\[
+\frac{dV(21.967)}{dt}\approx24.983\frac{\text{mm}^{3}}{\text{day}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+and its volume will be 
+\begin_inset Formula 
+\[
+V(21.967)\approx1177.2\text{mm}^{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphofV.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename graphofdV.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Summary
+\end_layout
+
+\begin_layout Standard
+The requested results are hereafter provided:
+\end_layout
+
+\begin_layout Itemize
+the model for the growth of the tumor is 
+\begin_inset Formula $V(t)=\frac{3200}{e^{\frac{1.5939}{e^{0.02122t}}}}$
+\end_inset
+
+, which is graphed in fig.
+ 0.1,
+\end_layout
+
+\begin_layout Itemize
+the tumor will grow to 90% the volume of the suprasellar cavity in 128 days
+ if left untreated,
+\end_layout
+
+\begin_layout Itemize
+the growth rate of the tumor on February 1st is 29.985
+\begin_inset Formula $\text{mm}^{3}$
+\end_inset
+
+per day
+\end_layout
+
+\begin_layout Itemize
+the tumor will be growing at its fastest rate on Febraury 26th when it will
+ have a volume of 1177.2
+\begin_inset Formula $\text{mm}^{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+Fornalski, K.
+ W., Reszczyńska, J., Dobrzyński, L., Wysocki, P., & Janiak, M.
+ K.
+ (2020).
+ Possible Source of the Gompertz Law of Proliferating Cancer Cells: Mechanistic
+ Modeling of Tumor Growth.
+ Acta Physica Polonica A, 138(6), 854–862.
+ https://doi.org/10.12693/aphyspola.138.854 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+recent paper on where Gompertz curves can be applied to cancer models.
+ thanks, wikipedia
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
