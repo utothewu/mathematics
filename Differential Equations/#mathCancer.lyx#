@@ -344,6 +344,14 @@ V(7)=810=\frac{3200}{e^{\frac{1.5939}{e^{7r}}}}
 
 \begin_inset Formula 
 \[
+\frac{1.5939}{e^{7r}}=\ln(\frac{3200}{810})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
 r=\frac{\ln(\frac{1.5939}{\ln(\frac{3200}{810})})}{7}\approx0.021222
 \]
 
@@ -459,7 +467,7 @@ Setting this equal to zero we find the value of
 is always positive
 \begin_inset Formula 
 \[
-\frac{\ln(\frac{3.66137}{2.29711})}{0.021222}=t\approx21.967\text{days}
+\frac{\ln(\frac{3.66137}{2.29711})}{0.021222}=t\approx21.967
 \]
 
 \end_inset
@@ -475,7 +483,7 @@ Entering this value of
  into (9) we find that the maximum rate of change is 
 \begin_inset Formula 
 \[
-\frac{dV(21.967)}{dt}\approx24.983\frac{\text{mm}^{3}}{\text{day}}
+\frac{dV(21.967)}{dt}\approx24.983
 \]
 
 \end_inset
@@ -487,7 +495,7 @@ Entering this value of
 and its volume will be 
 \begin_inset Formula 
 \[
-V(21.967)\approx1177.2\text{mm}^{3}
+V(21.967)\approx
 \]
 
 \end_inset
@@ -579,12 +587,8 @@ per day
 \end_layout
 
 \begin_layout Itemize
-the tumor will be growing at its fastest rate on Febraury 26th when it will
- have a volume of 1177.2
-\begin_inset Formula $\text{mm}^{3}$
-\end_inset
-
-.
+the tumor will be growing at its fastest rate on Febraury 26th and will
+ have a volume of 
 \end_layout
 
 \begin_layout Bibliography

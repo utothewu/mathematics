@@ -344,6 +344,14 @@ V(7)=810=\frac{3200}{e^{\frac{1.5939}{e^{7r}}}}
 
 \begin_inset Formula 
 \[
+\frac{1.5939}{e^{7r}}=\ln(\frac{3200}{810})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
 r=\frac{\ln(\frac{1.5939}{\ln(\frac{3200}{810})})}{7}\approx0.021222
 \]
 
