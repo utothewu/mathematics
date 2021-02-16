@@ -1,5 +1,5 @@
 # mathematics
-mathematics work sharing
+mathematics file sharing
 
 this can be used to sync and backup important work within groups and between personal and computer lab computers
 
